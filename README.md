@@ -48,13 +48,20 @@ Welcome to the server-side repository of the **_Professional Mountain Biking Coa
 
 ```
 MTB-Coaching-Server/
-├── .gitignore          # Lists files for Git to ignore
-├── index.js            # Main entry point of the application
-├── LICENSE
-├── README.md           # Project documentation
-├── package.lock.json   # Exact dependency tree
-├── package.json        # Project metadata and dependencies
-└── vercel.json         # Vercel deployment settings
+├── .gitignore                      # Specifies files and folders to be ignored by Git
+├── LICENSE                         # Project license information (MIT)
+├── package-lock.json               # Auto-generated lockfile for npm dependencies
+├── package.json                    # Project metadata and dependencies
+├── public/                         # Static assets (images, logos, etc.)
+├── README.md                       # Project documentation (this file)
+├── src/
+│   ├── routes/                     # API route handlers-related operations
+│   ├── app.js                      # Express app configuration and middleware setup
+│   ├── email.service.js            # Email sending logic and configuration
+│   └── server.js                   # Server startup and environment configuration
+├── templates/
+│   └── paymentConfirmation.html    # HTML template for payment confirmation emails
+└── vercel.json                     # Vercel deployment configuration
 ```
 
 ## 🔧 Installation, Configuration and Running Locally
@@ -198,3 +205,7 @@ The API is deployed at vercel and can be accessed through [**_this following URL
 ## 📄 License
 
 This project is licensed under the **MIT License** - see the [**_LICENSE_**](LICENSE) file for details.
+
+```
+
+```
