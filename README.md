@@ -182,9 +182,16 @@ Below are the main API endpoints provided by this server.
 
         Save or update a user in the database. Expects user data in the request body.
 
+        > **Example**:
+        >   `PUT /users/john@example.com`
+        >   **Body**: `{ "name": "John Doe", "role": "Student" }`
+
     -   **_GET_** `/users/:email`:
 
         Get a single user by email.
+
+        > **Example**:
+        >   `GET /users/john@example.com`
 
      <br>
 
@@ -199,57 +206,109 @@ Below are the main API endpoints provided by this server.
 
         <br>
 
-        > Example:
-            `GET /instructors?count=5&search=Alex`
+        > **Example**:
+        >   `GET /instructors?count=5&search=Alex`
 
     -   **_GET_** `/instructors/total`:
 
         Get the total number of instructor accounts registered.
 
+        > **Example**:
+        >   `GET /instructors/total`
+
     -   **_GET_** `/instructors/top`:
 
         Get the top 6 instructors (by total students) and a list of all instructors with their total students.
+
+        > **Example**:
+        >   `GET /instructors/top`
 
     -   **_GET_** `/instructor/:id`:
 
         Get a single instructor by MongoDB ObjectId.
 
+        > **Example**:
+        >   `GET /instructor/6653e1b2c1a2b3d4e5f6a7b8`
+
     -   **_PUT_** `/instructor/updateStudentCount`:
 
         Update an instructor's class student count. Expects `{ instructorId, classIndex }` in the request body.
+
+        > **Example**:
+        >   `PUT /instructor/updateStudentCount`
+        >   **Body**: `{ "instructorId": "6653e1b2c1a2b3d4e5f6a7b8", "classIndex": 0 }`
 
         <br>
 
 -   **Classes**
 
-    -   **_GET_** `/classes/total`: Get the total number of classes.
-    -   **_GET_** `/classes/top`: Get the top 6 classes (by total students).
+    -   **_GET_** `/classes/total`:
+    
+        Get the total number of classes.
+
+        > **Example**:
+        >   `GET /classes/total`
+
+    -   **_GET_** `/classes/top`:
+    
+        Get the top 6 classes (by total students).
+
+        > **Example**:
+        >   `GET /classes/top`
+
     -   **_GET_** `/classes?count=<number>&search=<string>`:
+        
         Get all classes. Query parameters:
+        
         -   **`count` (number):** Limits the number of classes returned. If omitted, returns empty array.
         -   **`search` (string):** Case-insensitive search, filters by class name. If omitted, returns all.
 
         <br>
 
         > **⚠️ Caution:** _`count`_ is required & `search` is optional.
-        > Example:
-            `GET /classes?count=10`
-
+        > **Example**:
+        >   `GET /classes?count=10`
+        >   `GET /classes?count=5&search=Beginner`
 
     <br>
 
-
 -   **Bookings**
 
-    -   **_PUT_** `/book-class`: Post a booking. Expects booking details in the request body.
+    -   **_PUT_** `/book-class`:
+    
+        Post a booking. Expects booking details in the request body.
 
-    -   **_GET_** `/book-class/:studentId`: Get all bookings for a user by their studentId.
+        > **Example**:
+        >   `PUT /book-class`
+        >   **Body**: `{ "studentId": "6653e1b2c1a2b3d4e5f6a7b8", "instructorId": "6653e1b2c1a2b3d4e5f6a7b9", "classIndex": 0, ... }`
 
-    -   **_GET_** `/book-class/:studentId/:itemId`: Get a specific booking by studentId and booking itemId.
+    -   **_GET_** `/book-class/:studentId`:
+    
+        Get all bookings for a user by their studentId.
 
-    -   **_DELETE_** `/book-class/:studentId/:itemId`: Delete a specific booking by studentId and itemId.
+        > **Example**:
+        >   `GET /book-class/6653e1b2c1a2b3d4e5f6a7b8`
 
-    -   **_DELETE_** `/booking/:studentId`: Delete all unpaid bookings for a user by studentId.
+    -   **_GET_** `/book-class/:studentId/:itemId`:
+    
+        Get a specific booking by studentId and booking itemId.
+
+        > **Example**:
+        >   `GET /book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
+
+    -   **_DELETE_** `/book-class/:studentId/:itemId`:
+    
+        Delete a specific booking by studentId and itemId.
+
+        > **Example**:
+        >   `DELETE /book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
+
+    -   **_DELETE_** `/booking/:studentId`:
+        
+        Delete all unpaid bookings for a user by studentId.
+
+        > **Example**:
+        >   `DELETE /booking/6653e1b2c1a2b3d4e5f6a7b8`
 
     <br>
 
@@ -258,6 +317,10 @@ Below are the main API endpoints provided by this server.
     -   **_POST_** `/create-payment-intent`:
 
         Create a Stripe payment intent. Expects `{ price }` in the request body.
+
+        > **Example**:
+        >   `POST /create-payment-intent`
+        >   **Body**: `{ "price": 99.99 }`
 
 <br>
 
