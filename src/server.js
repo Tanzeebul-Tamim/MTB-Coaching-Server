@@ -2,7 +2,7 @@ const app = require("./app");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.PAYMENT_SECRET_KEY);
-// const { sendPaymentConfirmationEmail } = require("./email.service");
+const { sendPaymentConfirmationEmail } = require("./email.service");
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.y70m6ei.mongodb.net/?retryWrites=true&w=majority`;
 const port = process.env.PORT || 5000;
@@ -25,8 +25,7 @@ async function run() {
         require("./routes/users")(app, userCollection);
         require("./routes/instructors")(app, userCollection);
         require("./routes/classes")(app, userCollection);
-        // require("./routes/bookings")(app, userCollection, bookingsCollection, stripe, sendPaymentConfirmationEmail);
-        require("./routes/bookings")(app, userCollection, bookingsCollection, stripe);
+        require("./routes/bookings")(app, userCollection, bookingsCollection, stripe, sendPaymentConfirmationEmail);
 
         // Health check
         app.get("/", (req, res) => {

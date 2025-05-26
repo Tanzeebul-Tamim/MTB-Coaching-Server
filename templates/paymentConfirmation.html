@@ -1,131 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <!-- paymentConfirmationEmail.html -->
-        <div
-            style="
-                width: 85%;
-                background-color: #0e0d0d;
-                color: white;
-                padding: 20px;
-                border-radius: 20px;
-            "
-        >
-            <div
-                style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                "
-            >
-                <div>
-                    <a href="https://pmbia-55816.web.app/">
-                        <img
-                            style="width: 45%; margin-bottom: 20px"
-                            src="./public/MTB_Coaching.png"
-                        />
-                    </a>
-                </div>
-                <div>
-                    <div
-                        style="
-                            display: flex;
-                            justify-content: end;
-                            align-items: center;
-                        "
-                    >
-                        <img style="width: 40%" src="./public/logo.png" />
-                    </div>
-                    <p style="text-align: end">
-                        Delivering exceptional services since 2006.
-                    </p>
-                </div>
-            </div>
-            <br />
-            <hr />
-            <br />
-            <p>{{currentDate}}</p>
-            <p>Dear {{studentName}},</p>
-            <br />
-            <p>
-                Thank you for choosing the
-                <strong>Professional Mountain Biking Coaching Network</strong>
-                for your mountain biking journey. We're excited to welcome you
-                to our vibrant community of riders and coaches who share a
-                passion for adventure, skill development, and the great
-                outdoors.
-            </p>
-            <br />
-            <p>
-                You have successfully enrolled in the following course, and we
-                are confident it will be a rewarding and memorable experience:
-            </p>
-            <br />
-            <p><strong>Course Details:</strong></p>
-            <p><strong>Course Name:</strong> {{className}}</p>
-            <p><strong>Instructor:</strong> {{instructorName}}</p>
-            <p><strong>Start Date:</strong> {{startDate}}</p>
-            <p><strong>End Date:</strong> {{endDate}}</p>
-            <p><strong>Duration:</strong> {{durationInDays}} days</p>
-            <p>
-                <strong>Location:</strong> Duifkruid 84, 4007 SZ Tiel,
-                Netherlands
-            </p>
-            <br />
-            <p>
-                Please make sure to arrive on time and come prepared with the
-                appropriate gear. If you have any questions regarding what to
-                bring or how to prepare, feel free to reach out to us.
-            </p>
-            <br />
-            <p><strong>Payment Confirmation:</strong></p>
-            <p><strong>Transaction ID:</strong> {{transactionId}}</p>
-            <p><strong>Amount Paid:</strong> $ {{price}}</p>
-            <p><strong>Date of Payment:</strong> {{paymentDate}}</p>
-            <br />
-            <p>
-                We're truly honored to have you with us and can't wait to help
-                you take your riding to the next level. Whether you're seeking
-                to build your foundational skills or refine advanced techniques,
-                our experienced instructors are here to support your growth
-                every step of the way.
-            </p>
-            <br />
-            <p>Warm regards,</p>
-            <br>
-            <p>Tanzeebul Tamim</p>
-            <p>Chief Executive Officer</p>
-            <p>MTB Coaching Network Ltd</p>
-
-            <br />
-            <div style="text-align: center">
-                <p>
-                    <strong>Our Website : </strong>
-                    <a href="https://pmbia-55816.web.app/">
-                        <span
-                            style="
-                                text-decoration-line: underline;
-                                color: #4285f4;
-                            "
-                        >
-                            https://pmbia-55816.web.app/
-                        </span>
-                    </a>
-                </p>
-                <p>
-                    <strong>Address : </strong>Duifkruid 84, 4007 SZ Tiel,
-                    Netherlands
-                </p>
-                <p>
-                    <strong>Phone : </strong>+31644460635 |
-                    <strong>Email : </strong>info@mtb-club.com
-                </p>
-            </div>
+<div
+    style="
+        width: 85%;
+        background-color: #0e0d0d;
+        color: white;
+        padding: 20px;
+        border-radius: 20px;
+    "
+>
+    <div
+        style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        "
+    >
+        <div>
+            <a href="https://pmbia-55816.web.app/">
+                <img
+                    style="width: 45%; margin-bottom: 20px"
+                    src="https://i.ibb.co/CstFjmPQ/MTB-Coaching.png"
+                />
+            </a>
         </div>
-    </body>
-</html>
+        <div>
+            <div
+                style="display: flex; justify-content: end; align-items: center"
+            >
+                <img
+                    style="width: 40%"
+                    src="https://i.ibb.co/B51wF1JW/logo.png"
+                />
+            </div>
+            <p style="text-align: end">
+                Delivering exceptional services since 2006.
+            </p>
+        </div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <p>{{currentDate}}</p>
+    <p>Dear {{studentName}},</p>
+    <br />
+    <p>
+        Thank you for choosing the
+        <strong>Professional Mountain Biking Coaching Network</strong>
+        for your mountain biking journey. We're excited to welcome you to our
+        vibrant community of riders and coaches who share a passion for
+        adventure, skill development, and the great outdoors.
+    </p>
+    <br />
+    <p>
+        You have successfully enrolled in the following course, and we are
+        confident it will be a rewarding and memorable experience:
+    </p>
+    <br />
+    <p><strong>Course Details:</strong></p>
+    <p><strong>Course Name:</strong> {{className}}</p>
+    <p><strong>Instructor:</strong> {{instructorName}}</p>
+    <p><strong>Start Date:</strong> {{startDate}}</p>
+    <p><strong>End Date:</strong> {{endDate}}</p>
+    <p><strong>Duration:</strong> {{durationInDays}} days</p>
+    <p><strong>Location:</strong> Duifkruid 84, 4007 SZ Tiel, Netherlands</p>
+    <br />
+    <p>
+        Please make sure to arrive on time and come prepared with the
+        appropriate gear. If you have any questions regarding what to bring or
+        how to prepare, feel free to reach out to us.
+    </p>
+    <br />
+    <p><strong>Payment Confirmation:</strong></p>
+    <p><strong>Transaction ID:</strong> {{transactionId}}</p>
+    <p><strong>Amount Paid:</strong> $ {{price}}</p>
+    <p><strong>Date of Payment:</strong> {{paymentDate}}</p>
+    <br />
+    <p>
+        We're truly honored to have you with us and can't wait to help you take
+        your riding to the next level. Whether you're seeking to build your
+        foundational skills or refine advanced techniques, our experienced
+        instructors are here to support your growth every step of the way.
+    </p>
+    <br />
+    <p>Warm regards,</p>
+    <br />
+    <p>Tanzeebul Tamim</p>
+    <p>Chief Executive Officer</p>
+    <p>MTB Coaching Network Ltd</p>
+
+    <br />
+    <div style="text-align: center">
+        <p>
+            <strong>Our Website : </strong>
+            <a href="https://pmbia-55816.web.app/">
+                <span style="text-decoration-line: underline; color: #4285f4">
+                    https://pmbia-55816.web.app/
+                </span>
+            </a>
+        </p>
+        <p>
+            <strong>Address : </strong>Duifkruid 84, 4007 SZ Tiel, Netherlands
+        </p>
+        <p>
+            <strong>Phone : </strong>+31644460635 |
+            <strong>Email : </strong>info@mtb-club.com
+        </p>
+    </div>
+</div>

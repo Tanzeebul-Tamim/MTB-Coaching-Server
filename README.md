@@ -5,7 +5,7 @@
 
 Welcome to the server-side repository of the **_Professional Mountain Biking Coaching Network_** website. It is responsible for handling API requests and managing the database functionalities.
 
-## Table of Contents
+## 📚 Table of Contents
 
 -   [Features](#-features)
 -   [Technologies Used](#-technologies-used)
@@ -13,6 +13,7 @@ Welcome to the server-side repository of the **_Professional Mountain Biking Coa
 -   [Project Structure](#-project-structure)
 -   [Installation, Configuration & Running Locally](#-installation-configuration-and-running-locally)
 -   [API Endpoints](#-api-endpoints)
+-   [Testing the API](#-testing-the-api)
 -   [Email System](#-email-system)
 -   [Checkout the Client End](#-checkout-the-client-end)
 -   [Live Deployment](#-live-deployment)
@@ -48,19 +49,24 @@ Welcome to the server-side repository of the **_Professional Mountain Biking Coa
 
 ```
 MTB-Coaching-Server/
-├── .gitignore                      # Specifies files and folders to be ignored by Git
-├── LICENSE                         # Project license information (MIT)
-├── package-lock.json               # Auto-generated lockfile for npm dependencies
-├── package.json                    # Project metadata and dependencies
 ├── public/                         # Static assets (images, logos, etc.)
-├── README.md                       # Project documentation (this file)
 ├── src/
 │   ├── routes/                     # API route handlers-related operations
+│   │   ├── bookings.js             # Booking and payment-related API endpoints (class booking, payment intent, etc.)
+│   │   ├── classes.js              # Class-related API endpoints (list, search, top classes, etc.)
+│   │   ├── instructors.js          # Instructor-related API endpoints (list, search, top instructors, etc.)
+│   │   └── users.js                # User-related API endpoints (create/update user, get user by email, etc.)
 │   ├── app.js                      # Express app configuration and middleware setup
 │   ├── email.service.js            # Email sending logic and configuration
 │   └── server.js                   # Server startup and environment configuration
 ├── templates/
 │   └── paymentConfirmation.html    # HTML template for payment confirmation emails
+├── .env.example                    # Template Environment variables for local development
+├── .gitignore                      # Specifies files and folders to be ignored by Git
+├── LICENSE                         # Project license information (MIT)
+├── package-lock.json               # Auto-generated lockfile for npm dependencies
+├── package.json                    # Project metadata and dependencies
+├── README.md                       # Project documentation (this file)
 └── vercel.json                     # Vercel deployment configuration
 ```
 
@@ -81,64 +87,68 @@ MTB-Coaching-Server/
 
 3. **_Set up Environment Variables:_**
 
-    Create a `.env` file in the project root & add the following fields:
+    - **Rename the [`.env.example`](./.env.example) file in the project root to `.env`:**
+    
+      This file contains the following fields
 
-    ```env
-    PORT
-    DB_USER
-    DB_PASS
-    PAYMENT_SECRET_KEY
-    EMAIL_PRIVATE_KEY
-    EMAIL_DOMAIN
-    MAIL_SENDER
-    ```
+        ```env
+        PORT=5000
+        DB_USER=yourDatabaseUser
+        DB_PASS=yourSecureDbPassword
+        PAYMENT_SECRET_KEY=sk_test_YourPaymentSecretKeyHere
+        EMAIL_PRIVATE_KEY=yourEmailPrivateKey
+        EMAIL_DOMAIN=mg.yourdomain.com
+        MAIL_SENDER=verified_sender@example.com
+        ```
 
-    **Guide & Configuration Details**
+    - **Guide & Configuration Details**
 
-    - **SERVER PORT:**
+        - **SERVER PORT:**
 
-        The port your server will listen on (commonly 5000 or 8000)
-        **`PORT=5000`**
-        <br>
+            The port your server will listen on (commonly 5000 or 8000)
+            **`PORT=5000`**
+            <br>
 
-    - **DATABASE USERNAME:**
+        - **DATABASE USERNAME:**
 
-        Username credential for your database (used in connection string or DB config)
-        **`DB_USER=yourDatabaseUser`**
-        <br>
+            Username credential for your database (used in connection string or DB config)
+            **`DB_USER=yourDatabaseUser`**
+            <br>
 
-    - **DATABASE PASSWORD:**
+        - **DATABASE PASSWORD:**
 
-        Corresponding password for the `DB_USER`
-        **`DB_PASS=yourSecureDbPassword`**
-        <br>
+            Corresponding password for the `DB_USER`
+            **`DB_PASS=yourSecureDbPassword`**
+            <br>
 
-    - **PAYMENT GATEWAY SECRET KEY:**
+        - **PAYMENT GATEWAY SECRET KEY:**
 
-        Your _Stripe_ payment processor’s private/secret key
-        **`PAYMENT_SECRET_KEY=sk_test_YourPaymentSecretKeyHere`**
-        <br>
+            Your _Stripe_ payment processor’s private/secret key
+            **`PAYMENT_SECRET_KEY=sk_test_YourPaymentSecretKeyHere`**
+            <br>
 
-    - **EMAIL PRIVATE KEY:**
+        - **EMAIL PRIVATE KEY:**
 
-        The private key from _Nodemailer_ email service provider
-        **`EMAIL_PRIVATE_KEY=yourEmailPrivateKeyValue`**
-        <br>
+            The private key from _Nodemailer_ email service provider
+            **`EMAIL_PRIVATE_KEY=yourEmailPrivateKeyValue`**
+            <br>
 
-    - **EMAIL DOMAIN:**
+        - **EMAIL DOMAIN:**
 
-        Domain or subdomain configured for sending emails
-        **`EMAIL_DOMAIN=mg.yourdomain.com`**
-        <br>
+            Domain or subdomain configured for sending emails
+            **`EMAIL_DOMAIN=mg.yourdomain.com`**
+            <br>
 
-    - **SENDER EMAIL ADDRESS:**
+        - **SENDER EMAIL ADDRESS:**
 
-        The verified sender address used by your mailer - _Nodemailer_ to send emails from the application.
-        This email must be authorized in your email service configuration.
+            The verified sender address used by your mailer - _Nodemailer_ to send emails from the application.
+            This email must be authorized in your email service configuration.
 
-        **`MAIL_SENDER=your_verified_sender@example.com`**
+            **`MAIL_SENDER=your_verified_sender@example.com`**
 
-        > 📌 In development, you can use a test email. In production, make sure this is a verified and authenticated sender (especially for services like Mailgun, SendGrid, etc.).
+            > 📌 In development, you can use a test email. In production, make sure this is a verified and authenticated sender (especially for services like Mailgun, SendGrid, etc.).
+
+        > ⚠️ **Caution:** Never commit your `.env` file to version control (GitHub, Git, etc.) as it contains sensitive credentials. Always keep this file private and add `.env` to your `.gitignore`.
 
 4. **_Running the application_**
     - Start the server:
@@ -148,40 +158,58 @@ MTB-Coaching-Server/
 
 ## 📡 API Endpoints
 
+Below are the main API endpoints provided by this server.
+
+> **NB:** Some endpoints require query parameters for correct operation. If you do not provide required parameters, you may receive empty results or errors.
+
 -   **Users**
 
-    -   **_PUT_** `users/:email`: Save user in db
-    -   **_GET_** `users/:email`: Get a single user by email
+    -   **_PUT_** `/users/:email`: Save or update a user in the database. Expects user data in the request body.
+    -   **_GET_** `/users/:email`: Get a single user by email.
         <br>
 
 -   **Instructors**
 
-    -   **_GET_** `/instructors`: Get all instructors
-    -   **_GET_** `/instructors/total`: Get how many instructor accounts have been registered
-    -   **_GET_** `/instructors/top`: Get top 6 instructors & the number of their total students
-    -   **_GET_** `/instructors/:id`: Get a single instructor by ID
-    -   **_PUT_** `/instructor/updateStudentCount`: Update instructors available seat
+    -   **_GET_** `/instructors?count=<number>&search=<string>`: Get all instructors. Optional query parameters:
+        -   `count` (number): Limits the number of instructors returned. If omitted, returns all.
+        -   `search` (string): Case-insensitive search by instructor name. If omitted, returns all.
+    -   **_GET_** `/instructors/total`: Get the total number of instructor accounts registered.
+    -   **_GET_** `/instructors/top`: Get the top 6 instructors (by total students) and a list of all instructors with their total students.
+    -   **_GET_** `/instructor/:id`: Get a single instructor by MongoDB ObjectId.
+    -   **_PUT_** `/instructor/updateStudentCount`: Update an instructor's class student count. Expects `{ instructorId, classIndex }` in the request body.
         <br>
 
 -   **Classes**
 
-    -   **_GET_** `/classes`: Get all classes
-    -   **_GET_** `/classes/total`: Get the total number of classes
-    -   **_GET_** `/classes/top`: Get top 6 classes
+    -   **_GET_** `/classes?count=<number>&search=<string>`: Get all classes. **`count` is required** (e.g., `/classes?count=10`). Optional `search` parameter filters by class name (case-insensitive).
+    -   **_GET_** `/classes/total`: Get the total number of classes.
+    -   **_GET_** `/classes/top`: Get the top 6 classes (by total students).
         <br>
+
+    > ⚠️ **To get results from `/classes`, always provide the `count` query parameter.**
+    > Example: `GET /classes?count=10`
 
 -   **Bookings**
 
-    -   **_PUT_** `/book-class`: Post a booking
-    -   **_GET_** `/book-class/:studentId`: Get user bookings
-    -   **_GET_** `/book-class/:studentId/:itemId`: Get a booking
-    -   **_DELETE_** `/book-class/:studentId/:itemId`: Delete a booking
-    -   **_DELETE_** `/booking/:studentId`: Delete all bookings of a user
+    -   **_PUT_** `/book-class`: Post a booking. Expects booking details in the request body.
+    -   **_GET_** `/book-class/:studentId`: Get all bookings for a user by their studentId.
+    -   **_GET_** `/book-class/:studentId/:itemId`: Get a specific booking by studentId and booking itemId.
+    -   **_DELETE_** `/book-class/:studentId/:itemId`: Delete a specific booking by studentId and itemId.
+    -   **_DELETE_** `/booking/:studentId`: Delete all unpaid bookings for a user by studentId.
         <br>
 
 -   **Payment**
-    -   **_POST_** `/create-payment-intent`: Create payment intent
+    -   **_POST_** `/create-payment-intent`: Create a Stripe payment intent. Expects `{ price }` in the request body.
         <br>
+
+### 🧪 **Testing the API**
+
+-   Use tools like **Postman**, **Insomnia**, or your browser (for GET requests) to test endpoints.
+-   For endpoints requiring query parameters (like `/classes`), always include them in the URL.
+-   For POST/PUT endpoints, provide the required JSON body.
+-   The server will respond with JSON data for all endpoints.
+
+> **📝 NB:** For more details on _request/response_ formats, see the source code in [**`src/routes/`**](./src/routes/).
 
 ## 📨 Email System
 
@@ -190,7 +218,13 @@ This server uses **Nodemailer** with **Mailgun** and **Handlebars** templating t
 -   Enrollment confirmations
 -   Payment receipts
 
-Below is a screenshot of the transaction confirmation email sent to the clients:
+> ⚠️ **Note on Email Testing**
+> Due to the use of a **Mailgun sandbox domain** (part of the free-tier setup), emails can **only be sent to pre-authorized recipients**. This means only specified test addresses (e.g., mine) will successfully receive emails. Other users will not receive them unless added as authorized recipients.
+
+To evaluate the email system:
+
+-   Please refer to the screenshot below showing the rendered email content.
+-   The email [**_logic_**](./src/email.service.js), [**_structure_**](./templates/paymentConfirmation.html), and [**_template integration_**](./src/routes/bookings.js#L55-L63) can be reviewed in the source code.
 
 ![Transaction Confirmation Email](./public/mail.png)
 
@@ -205,7 +239,3 @@ The API is deployed at vercel and can be accessed through [**_this following URL
 ## 📄 License
 
 This project is licensed under the **MIT License** - see the [**_LICENSE_**](LICENSE) file for details.
-
-```
-
-```

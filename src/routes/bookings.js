@@ -1,7 +1,13 @@
 const { ObjectId } = require("mongodb");
 
 // Booking and payment routes
-module.exports = (app, userCollection, bookingsCollection, stripe, sendPaymentConfirmationEmail) => {
+module.exports = (
+    app,
+    userCollection,
+    bookingsCollection,
+    stripe,
+    sendPaymentConfirmationEmail
+) => {
     // post a booking
     app.put("/book-class", async (req, res) => {
         const {
@@ -104,6 +110,7 @@ module.exports = (app, userCollection, bookingsCollection, stripe, sendPaymentCo
     // create payment intent
     app.post("/create-payment-intent", async (req, res) => {
         const { price } = req.body;
+        if (!price) return res.status(400).send("Price missing");
         const amount = parseFloat(price) * 100;
         if (!price) return;
         const paymentIntent = await stripe.paymentIntents.create({
