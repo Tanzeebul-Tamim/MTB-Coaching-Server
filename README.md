@@ -5,6 +5,8 @@
 
 Welcome to the server-side repository of the **_Professional Mountain Biking Coaching Network_** website. It is responsible for handling API requests and managing the database functionalities.
 
+<br>
+
 ## 📚 Table of Contents
 
 -   [Features](#-features)
@@ -19,6 +21,8 @@ Welcome to the server-side repository of the **_Professional Mountain Biking Coa
 -   [Live Deployment](#-live-deployment)
 -   [License](#-license)
 
+<br>
+
 ## 🚀 Features
 
 -   CRUD operations for users and items.
@@ -28,6 +32,8 @@ Welcome to the server-side repository of the **_Professional Mountain Biking Coa
 -   Transactional emails using Nodemailer with Mailgun integration.
 -   Date and time formatting with Moment.js.
 -   Handlebars – for generating dynamic HTML email template rendering
+
+<br>
 
 ## 🧰 Technologies Used
 
@@ -40,10 +46,14 @@ Welcome to the server-side repository of the **_Professional Mountain Biking Coa
 -   Mailgun Transport – for email delivery via Mailgun API
 -   Handlebars – for generating dynamic HTML email templates
 
+<br>
+
 ## ✅ Prerequisites
 
 -   Node.js and npm installed.
 -   MongoDB installed and running.
+
+<br>
 
 ## 📁 Project Structure
 
@@ -70,6 +80,8 @@ MTB-Coaching-Server/
 └── vercel.json                     # Vercel deployment configuration
 ```
 
+<br>
+
 ## 🔧 Installation, Configuration and Running Locally
 
 1. **_Clone the repository:_**
@@ -88,8 +100,8 @@ MTB-Coaching-Server/
 3. **_Set up Environment Variables:_**
 
     - **Rename the [`.env.example`](./.env.example) file in the project root to `.env`:**
-    
-      This file contains the following fields
+
+        This file contains the following fields
 
         ```env
         PORT=5000
@@ -156,6 +168,8 @@ MTB-Coaching-Server/
         npm start
         ```
 
+<br>
+
 ## 📡 API Endpoints
 
 Below are the main API endpoints provided by this server.
@@ -164,43 +178,88 @@ Below are the main API endpoints provided by this server.
 
 -   **Users**
 
-    -   **_PUT_** `/users/:email`: Save or update a user in the database. Expects user data in the request body.
-    -   **_GET_** `/users/:email`: Get a single user by email.
-        <br>
+    -   **_PUT_** `/users/:email`:
+
+        Save or update a user in the database. Expects user data in the request body.
+
+    -   **_GET_** `/users/:email`:
+
+        Get a single user by email.
+
+     <br>
 
 -   **Instructors**
 
-    -   **_GET_** `/instructors?count=<number>&search=<string>`: Get all instructors. Optional query parameters:
-        -   `count` (number): Limits the number of instructors returned. If omitted, returns all.
-        -   `search` (string): Case-insensitive search by instructor name. If omitted, returns all.
-    -   **_GET_** `/instructors/total`: Get the total number of instructor accounts registered.
-    -   **_GET_** `/instructors/top`: Get the top 6 instructors (by total students) and a list of all instructors with their total students.
-    -   **_GET_** `/instructor/:id`: Get a single instructor by MongoDB ObjectId.
-    -   **_PUT_** `/instructor/updateStudentCount`: Update an instructor's class student count. Expects `{ instructorId, classIndex }` in the request body.
+    -   **_GET_** `/instructors?count=<number>&search=<string>`:
+
+        Get all instructors. Optional query parameters:
+
+        -   **`count` (number):** Limits the number of instructors returned. If omitted, returns all.
+        -   **`search` (string):** Case-insensitive search by instructor name. If omitted, returns all.
+
+        <br>
+
+        > Example:
+            `GET /instructors?count=5&search=Alex`
+
+    -   **_GET_** `/instructors/total`:
+
+        Get the total number of instructor accounts registered.
+
+    -   **_GET_** `/instructors/top`:
+
+        Get the top 6 instructors (by total students) and a list of all instructors with their total students.
+
+    -   **_GET_** `/instructor/:id`:
+
+        Get a single instructor by MongoDB ObjectId.
+
+    -   **_PUT_** `/instructor/updateStudentCount`:
+
+        Update an instructor's class student count. Expects `{ instructorId, classIndex }` in the request body.
+
         <br>
 
 -   **Classes**
 
-    -   **_GET_** `/classes?count=<number>&search=<string>`: Get all classes. **`count` is required** (e.g., `/classes?count=10`). Optional `search` parameter filters by class name (case-insensitive).
     -   **_GET_** `/classes/total`: Get the total number of classes.
     -   **_GET_** `/classes/top`: Get the top 6 classes (by total students).
+    -   **_GET_** `/classes?count=<number>&search=<string>`:
+        Get all classes. Query parameters:
+        -   **`count` (number):** Limits the number of classes returned. If omitted, returns empty array.
+        -   **`search` (string):** Case-insensitive search, filters by class name. If omitted, returns all.
+
         <br>
 
-    > ⚠️ **To get results from `/classes`, always provide the `count` query parameter.**
-    > Example: `GET /classes?count=10`
+        > **⚠️ Caution:** _`count`_ is required & `search` is optional.
+        > Example:
+            `GET /classes?count=10`
+
+
+    <br>
+
 
 -   **Bookings**
 
     -   **_PUT_** `/book-class`: Post a booking. Expects booking details in the request body.
+
     -   **_GET_** `/book-class/:studentId`: Get all bookings for a user by their studentId.
+
     -   **_GET_** `/book-class/:studentId/:itemId`: Get a specific booking by studentId and booking itemId.
+
     -   **_DELETE_** `/book-class/:studentId/:itemId`: Delete a specific booking by studentId and itemId.
+
     -   **_DELETE_** `/booking/:studentId`: Delete all unpaid bookings for a user by studentId.
-        <br>
+
+    <br>
 
 -   **Payment**
-    -   **_POST_** `/create-payment-intent`: Create a Stripe payment intent. Expects `{ price }` in the request body.
-        <br>
+
+    -   **_POST_** `/create-payment-intent`:
+
+        Create a Stripe payment intent. Expects `{ price }` in the request body.
+
+<br>
 
 ### 🧪 **Testing the API**
 
@@ -210,6 +269,8 @@ Below are the main API endpoints provided by this server.
 -   The server will respond with JSON data for all endpoints.
 
 > **📝 NB:** For more details on _request/response_ formats, see the source code in [**`src/routes/`**](./src/routes/).
+
+<br>
 
 ## 📨 Email System
 
@@ -226,15 +287,23 @@ To evaluate the email system:
 -   Please refer to the screenshot below showing the rendered email content.
 -   The email [**_logic_**](./src/email.service.js), [**_structure_**](./templates/paymentConfirmation.html), and [**_template integration_**](./src/routes/bookings.js#L55-L63) can be reviewed in the source code.
 
+<br>
+
 ![Transaction Confirmation Email](./public/mail.png)
+
+<br>
 
 ## 💻 Checkout the Client End
 
 Visit the [**_front-end repository_**](https://github.com/Tanzeebul-Tamim/MTB-Coaching-Client) of the website.
 
+<br>
+
 ## 🌐 Live Deployment
 
 The API is deployed at vercel and can be accessed through [**_this following URL_**](https://summer-camp-school-server-ivory.vercel.app/)
+
+<br>
 
 ## 📄 License
 
