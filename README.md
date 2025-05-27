@@ -135,7 +135,7 @@ MTB-Coaching-Server/
 
         - **PAYMENT GATEWAY SECRET KEY:**
 
-            Your _Stripe_ payment processor’s private/secret key            **`PAYMENT_SECRET_KEY=sk_test_YourPaymentSecretKeyHere`**
+            Your _Stripe_ payment processor’s private/secret key **`PAYMENT_SECRET_KEY=sk_test_YourPaymentSecretKeyHere`**
             <br>
 
         - **EMAIL PRIVATE KEY:**
@@ -159,7 +159,9 @@ MTB-Coaching-Server/
 
             > 📌 In development, you can use a test email. In production, make sure this is a verified and authenticated sender (especially for services like Mailgun, SendGrid, etc.).
 
-        > ⚠️ **Caution:** Never commit your `.env` file to version control (GitHub, Git, etc.) as it contains sensitive credentials. Always keep this file private and add `.env` to your `.gitignore`.
+        > ⚠️ **Caution:**
+        >
+        > Never commit your `.env` file to version control (GitHub, Git, etc.) as it contains sensitive credentials. Always keep this file private and add `.env` to your `.gitignore`.
 
 4. **_Running the application_:**
 
@@ -184,16 +186,16 @@ Below are the main API endpoints provided by this server.
         Save or update a user in the database. Expects user data in the request body.
 
         > **Example**:
-        >   **PUT** `/users/john@example.com`
+        > **PUT** `/users/john@example.com`
         >
-        >   **Body**: `{ "name": "John Doe", "role": "Student" }`
+        > **Body**: `{ "name": "John Doe", "role": "Student" }`
 
     -   **_GET_** `/users/:email`:
 
         Get a single user by email.
 
         > **Example**:
-        >   **GET** `/users/john@example.com`
+        > **GET** `/users/john@example.com`
 
      <br>
 
@@ -209,7 +211,7 @@ Below are the main API endpoints provided by this server.
         <br>
 
         > **Example**:
-        >   **GET** `/instructors?count=5&search=Alex`
+        > **GET** `/instructors?count=5&search=Alex`
 
     -   **_GET_** `/instructors/total`:
 
@@ -224,30 +226,30 @@ Below are the main API endpoints provided by this server.
         Get a single instructor by MongoDB ObjectId.
 
         > **Example**:
-        >   **GET** `/instructor/6653e1b2c1a2b3d4e5f6a7b8`
+        > **GET** `/instructor/6653e1b2c1a2b3d4e5f6a7b8`
 
     -   **_PUT_** `/instructor/updateStudentCount`:
 
         Update an instructor's class student count. Expects `{ instructorId, classIndex }` in the request body.
 
-        >   **Body**: `{ "instructorId": "6653e1b2c1a2b3d4e5f6a7b8", "classIndex": 0 }`
+        > **Body**: `{ "instructorId": "6653e1b2c1a2b3d4e5f6a7b8", "classIndex": 0 }`
 
         <br>
 
 -   **Classes**
 
     -   **_GET_** `/classes/total`:
-    
+
         Get the total number of classes.
 
     -   **_GET_** `/classes/top`:
-    
+
         Get the top 6 classes (by total students).
 
     -   **_GET_** `/classes?count=<number>&search=<string>`:
-        
+
         Get all classes. Query parameters:
-        
+
         -   **`count` (number):** Limits the number of classes returned. If omitted, returns empty array.
         -   **`search` (string):** Case-insensitive search, filters by class name. If omitted, returns all.
 
@@ -256,46 +258,46 @@ Below are the main API endpoints provided by this server.
         > **⚠️ Caution:** _`count`_ is required & `search` is optional.
         >
         > **Examples**: <br>
-        >   **GET** `/classes?count=10` <br>
-        >   **GET** `/classes?count=5&search=Beginner`
+        > **GET** `/classes?count=10` <br>
+        > **GET** `/classes?count=5&search=Beginner`
 
     <br>
 
 -   **Bookings**
 
     -   **_PUT_** `/book-class`:
-    
+
         Post a booking. Expects booking details in the request body.
 
-        >   **Body**: `{ "studentId": "6653e1b2c1a2b3d4e5f6a7b8", "instructorId": "6653e1b2c1a2b3d4e5f6a7b9", "classIndex": 0, ... }`
+        > **Body**: `{ "studentId": "6653e1b2c1a2b3d4e5f6a7b8", "instructorId": "6653e1b2c1a2b3d4e5f6a7b9", "classIndex": 0, ... }`
 
     -   **_GET_** `/book-class/:studentId`:
-    
+
         Get all bookings for a user by their studentId.
 
         > **Example**:
-        >   **GET** `/book-class/6653e1b2c1a2b3d4e5f6a7b8`
+        > **GET** `/book-class/6653e1b2c1a2b3d4e5f6a7b8`
 
     -   **_GET_** `/book-class/:studentId/:itemId`:
-    
+
         Get a specific booking by studentId and booking itemId.
 
         > **Example**:
-        >   **GET** `/book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
+        > **GET** `/book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
 
     -   **_DELETE_** `/book-class/:studentId/:itemId`:
-    
+
         Delete a specific booking by studentId and itemId.
 
         > **Example**:
-        >   **DELETE** `/book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
+        > **DELETE** `/book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
 
     -   **_DELETE_** `/booking/:studentId`:
-        
+
         Delete all unpaid bookings for a user by studentId.
 
         > **Example**:
-        >   **DELETE** `/booking/6653e1b2c1a2b3d4e5f6a7b8`
+        > **DELETE** `/booking/6653e1b2c1a2b3d4e5f6a7b8`
 
     <br>
 
@@ -305,7 +307,7 @@ Below are the main API endpoints provided by this server.
 
         Create a Stripe payment intent. Expects `{ price }` in the request body.
 
-        >   **Body**: `{ ..., "price": 99.99 }`
+        > **Body**: `{ ..., "price": 99.99 }`
 
 <br>
 
@@ -327,7 +329,8 @@ This server uses **Nodemailer** with **Mailgun** and **Handlebars** templating t
 -   Enrollment confirmations
 -   Payment receipts
 
-> ⚠️ **Note on Email Testing**
+> ⚠️ **Note on Email Testing:**
+>
 > Due to the use of a **Mailgun sandbox domain** (part of the free-tier setup), emails can **only be sent to pre-authorized recipients**. This means only specified test addresses (e.g., mine) will successfully receive emails. Other users will not receive them unless added as authorized recipients.
 
 To evaluate the email system:
@@ -349,7 +352,11 @@ Visit the [**_front-end repository_**](https://github.com/Tanzeebul-Tamim/MTB-Co
 
 ## 🌐 Live Deployment
 
-The API is deployed at vercel and can be accessed through [**_this following URL_**](https://summer-camp-school-server-ivory.vercel.app/)
+The API is deployed at [**Render**](https://render.com/) and can be accessed through [**_this following URL_**](https://mtb-coaching-server.onrender.com/).
+
+> **⚠️ Note on Free Hosting (Render):**
+>
+> This backend is hosted on Render’s free plan. The server will “spin down” (go to sleep) after periods of inactivity, which can cause the first request after a while to take up to 50 seconds or more to respond. Subsequent requests will be fast. This is normal behavior for free-tier hosting and does not indicate a problem with the API.
 
 <br>
 
