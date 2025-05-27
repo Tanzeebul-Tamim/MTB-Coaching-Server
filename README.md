@@ -311,7 +311,7 @@ Below are the main API endpoints provided by this server.
 
 ### 🧪 **Testing the API**
 
--   Use tools like **Postman**, **Insomnia**, or your browser (for GET requests) to test endpoints.
+-   Use tools like [**Postman**](https://www.postman.com/), [**Insomnia**](https://insomnia.rest/), or your browser (for GET requests) to test endpoints.
 -   For endpoints requiring query parameters (like `/classes`), always include them in the URL.
 -   For POST/PUT endpoints, provide the required JSON body.
 -   The server will respond with JSON data for all endpoints.
