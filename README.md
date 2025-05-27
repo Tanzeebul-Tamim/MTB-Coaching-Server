@@ -135,8 +135,7 @@ MTB-Coaching-Server/
 
         - **PAYMENT GATEWAY SECRET KEY:**
 
-            Your _Stripe_ payment processor’s private/secret key
-            **`PAYMENT_SECRET_KEY=sk_test_YourPaymentSecretKeyHere`**
+            Your _Stripe_ payment processor’s private/secret key            **`PAYMENT_SECRET_KEY=sk_test_YourPaymentSecretKeyHere`**
             <br>
 
         - **EMAIL PRIVATE KEY:**
@@ -162,11 +161,13 @@ MTB-Coaching-Server/
 
         > ⚠️ **Caution:** Never commit your `.env` file to version control (GitHub, Git, etc.) as it contains sensitive credentials. Always keep this file private and add `.env` to your `.gitignore`.
 
-4. **_Running the application_**
-    - Start the server:
-        ```bash
-        npm start
-        ```
+4. **_Running the application_:**
+
+    Start the server:
+
+    ```bash
+    npm start
+    ```
 
 <br>
 
@@ -183,7 +184,8 @@ Below are the main API endpoints provided by this server.
         Save or update a user in the database. Expects user data in the request body.
 
         > **Example**:
-        >   `PUT /users/john@example.com`
+        >   **PUT** `/users/john@example.com`
+        >
         >   **Body**: `{ "name": "John Doe", "role": "Student" }`
 
     -   **_GET_** `/users/:email`:
@@ -191,7 +193,7 @@ Below are the main API endpoints provided by this server.
         Get a single user by email.
 
         > **Example**:
-        >   `GET /users/john@example.com`
+        >   **GET** `/users/john@example.com`
 
      <br>
 
@@ -207,35 +209,27 @@ Below are the main API endpoints provided by this server.
         <br>
 
         > **Example**:
-        >   `GET /instructors?count=5&search=Alex`
+        >   **GET** `/instructors?count=5&search=Alex`
 
     -   **_GET_** `/instructors/total`:
 
         Get the total number of instructor accounts registered.
 
-        > **Example**:
-        >   `GET /instructors/total`
-
     -   **_GET_** `/instructors/top`:
 
         Get the top 6 instructors (by total students) and a list of all instructors with their total students.
-
-        > **Example**:
-        >   `GET /instructors/top`
 
     -   **_GET_** `/instructor/:id`:
 
         Get a single instructor by MongoDB ObjectId.
 
         > **Example**:
-        >   `GET /instructor/6653e1b2c1a2b3d4e5f6a7b8`
+        >   **GET** `/instructor/6653e1b2c1a2b3d4e5f6a7b8`
 
     -   **_PUT_** `/instructor/updateStudentCount`:
 
         Update an instructor's class student count. Expects `{ instructorId, classIndex }` in the request body.
 
-        > **Example**:
-        >   `PUT /instructor/updateStudentCount`
         >   **Body**: `{ "instructorId": "6653e1b2c1a2b3d4e5f6a7b8", "classIndex": 0 }`
 
         <br>
@@ -246,15 +240,9 @@ Below are the main API endpoints provided by this server.
     
         Get the total number of classes.
 
-        > **Example**:
-        >   `GET /classes/total`
-
     -   **_GET_** `/classes/top`:
     
         Get the top 6 classes (by total students).
-
-        > **Example**:
-        >   `GET /classes/top`
 
     -   **_GET_** `/classes?count=<number>&search=<string>`:
         
@@ -266,9 +254,10 @@ Below are the main API endpoints provided by this server.
         <br>
 
         > **⚠️ Caution:** _`count`_ is required & `search` is optional.
-        > **Example**:
-        >   `GET /classes?count=10`
-        >   `GET /classes?count=5&search=Beginner`
+        >
+        > **Examples**: <br>
+        >   **GET** `/classes?count=10` <br>
+        >   **GET** `/classes?count=5&search=Beginner`
 
     <br>
 
@@ -278,8 +267,6 @@ Below are the main API endpoints provided by this server.
     
         Post a booking. Expects booking details in the request body.
 
-        > **Example**:
-        >   `PUT /book-class`
         >   **Body**: `{ "studentId": "6653e1b2c1a2b3d4e5f6a7b8", "instructorId": "6653e1b2c1a2b3d4e5f6a7b9", "classIndex": 0, ... }`
 
     -   **_GET_** `/book-class/:studentId`:
@@ -287,28 +274,28 @@ Below are the main API endpoints provided by this server.
         Get all bookings for a user by their studentId.
 
         > **Example**:
-        >   `GET /book-class/6653e1b2c1a2b3d4e5f6a7b8`
+        >   **GET** `/book-class/6653e1b2c1a2b3d4e5f6a7b8`
 
     -   **_GET_** `/book-class/:studentId/:itemId`:
     
         Get a specific booking by studentId and booking itemId.
 
         > **Example**:
-        >   `GET /book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
+        >   **GET** `/book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
 
     -   **_DELETE_** `/book-class/:studentId/:itemId`:
     
         Delete a specific booking by studentId and itemId.
 
         > **Example**:
-        >   `DELETE /book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
+        >   **DELETE** `/book-class/6653e1b2c1a2b3d4e5f6a7b8/6653e1b2c1a2b3d4e5f6a7c0`
 
     -   **_DELETE_** `/booking/:studentId`:
         
         Delete all unpaid bookings for a user by studentId.
 
         > **Example**:
-        >   `DELETE /booking/6653e1b2c1a2b3d4e5f6a7b8`
+        >   **DELETE** `/booking/6653e1b2c1a2b3d4e5f6a7b8`
 
     <br>
 
@@ -318,9 +305,7 @@ Below are the main API endpoints provided by this server.
 
         Create a Stripe payment intent. Expects `{ price }` in the request body.
 
-        > **Example**:
-        >   `POST /create-payment-intent`
-        >   **Body**: `{ "price": 99.99 }`
+        >   **Body**: `{ ..., "price": 99.99 }`
 
 <br>
 
