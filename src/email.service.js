@@ -70,7 +70,7 @@ Payment Details:
 We hope you enjoy your learning journey!
 
 Warm regards,
-PMBIA Team
+MTB Club Team
 `;
 
     transporter.sendMail(
