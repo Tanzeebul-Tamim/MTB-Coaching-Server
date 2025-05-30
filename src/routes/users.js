@@ -16,6 +16,7 @@ module.exports = (app, userCollection) => {
             if (user.address) updateDoc.address = user.address;
             if (user.role) updateDoc.role = user.role;
             if (user.quote) updateDoc.quote = user.quote;
+            if (user.cover) updateDoc.cover = user.cover;
             const result = await userCollection.updateOne(
                 query,
                 { $set: updateDoc },
