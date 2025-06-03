@@ -244,7 +244,7 @@ Easily integrate with the _MTB Coaching Network_ backend using these RESTful API
         > **Example**: <br>
         > _GET_ `/instructor/total/6653e1b2c1a2b3d4e5f6a7b8`
         
-    -   **_GET_** `/instructors/students/:id/:idx`:
+    -   **_GET_** `/instructor/students/:id/:idx`:
 
         Get the student list of a specific course of a specific instructor (`idx` represents course-index).
 
