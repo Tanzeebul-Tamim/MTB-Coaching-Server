@@ -73,7 +73,7 @@ MTB-Coaching-Server/
 ├── LICENSE                         # Project license information (MIT)
 ├── package-lock.json               # Auto-generated lockfile for npm dependencies
 ├── package.json                    # Project metadata and dependencies
-└── README.md                       # Project documentation (this file)configuration
+└── README.md                       # Project documentation (this file)
 ```
 
 <br>
@@ -174,7 +174,7 @@ MTB-Coaching-Server/
 
 ## 📡 API Endpoints
 
-<details>
+<details open>
 <summary>
     <span style="font-size:1.05em; font-weight:bold;">
         Click to expand for a full list of available API endpoints and usage examples
@@ -237,7 +237,7 @@ Easily integrate with the _MTB Coaching Network_ backend using these RESTful API
 
         Get the top 6 instructors (by total students) and a list of all instructors with their total students.
 
-    -   **_GET_** `/instructors/total/:id`:
+    -   **_GET_** `/instructor/total/:id`:
 
         Get the number of total students of a specific instructor.
 
@@ -328,15 +328,10 @@ Easily integrate with the _MTB Coaching Network_ backend using these RESTful API
         > **Body**: <br>
         >```
         >    {
-        >       "_id": ObjectId('44f4b3ff19285d8c60657987')
-        >       "class-name": "How to do bunnyhop",
         >       "classIndex": 1,
-        >       "instructorId": ObjectId('664fd275e708c848f468d0cd')
-        >       "studentId": ObjectId('8b1bba74f6764dd8a92a1111')
-        >       "classFee": 30,
-        >       "classImage": "https://i.ibb.co.com/6RTwQWR0/maxresdefault-1.jpg",
+        >       "instructorId": "664fd275e708c848f468d0cd",
+        >       "studentId": "8b1bba74f6764dd8a92a1111",
         >       "date": "2023-06-02T01:50:00.000Z",
-        >       "instructorName": "Tamim Tanzeebul",
         >       "paymentStatus": "paid",
         >       "studentEmail": "kunderwood@yahoo.com",
         >       "studentName": "James Aguilar",
@@ -373,6 +368,9 @@ Easily integrate with the _MTB Coaching Network_ backend using these RESTful API
         > **Example**: <br>
         > _DELETE_ `/book-class/6653e1b2c1a2b3d4e5f6a7b8`
 
+        > **Body**: <br>
+        > `{ "instructorId": "6653e1b2c1a2b3d4e5f6a7b8", "classIndex": 0 }`
+
     -   **_DELETE_** `/booking/:studentId`:
 
         Delete all unpaid bookings for a user by studentId.
@@ -392,7 +390,7 @@ Easily integrate with the _MTB Coaching Network_ backend using these RESTful API
         > _POST_ `/create-payment-intent`
 
         > **Body**: <br>
-        `{ ..., "price": 99.99 }`
+        `{ "price": 99.99 }`
 
 </details>
 

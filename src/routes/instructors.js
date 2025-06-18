@@ -104,7 +104,7 @@ module.exports = (app, userCollection, bookingsCollection) => {
         };
         const instructor = await userCollection.findOne(query);
         let classItem = instructor.classes[classIndex];
-        classItem.totalStudent += 1;
+        classItem.totalStudent++;
         const update = { $set: { classes: instructor.classes } };
         const result = await userCollection.updateOne(query, update);
         res.send(result);
