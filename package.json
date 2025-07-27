@@ -1,24 +1,24 @@
 {
-  "name": "summer-camp-school-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.1.4",
-    "express": "^4.18.2",
-    "handlebars": "^4.7.8",
-    "moment": "^2.29.4",
-    "mongodb": "^5.6.0",
-    "nodemailer": "^6.9.3",
-    "nodemailer-mailgun-transport": "^2.1.5",
-    "stripe": "^12.9.0"
-  }
+    "name": "mtb-coaching-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.1.4",
+        "express": "^4.18.2",
+        "handlebars": "^4.7.8",
+        "moment": "^2.29.4",
+        "mongodb": "^5.6.0",
+        "nodemailer": "^6.9.3",
+        "nodemailer-mailgun-transport": "^2.1.5",
+        "stripe": "^12.9.0"
+    }
 }
