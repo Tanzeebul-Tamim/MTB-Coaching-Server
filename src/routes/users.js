@@ -30,7 +30,7 @@ module.exports = (app, userCollection) => {
                 }
             });
 
-            updateDoc.classes = updateDoc.classes.map((classItem) => {
+            updateDoc.classes = updateDoc.classes?.map((classItem) => {
                 return {
                     ...classItem,
                     startDate: new Date(classItem.startDate),

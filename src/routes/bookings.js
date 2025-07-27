@@ -63,7 +63,9 @@ module.exports = (
                 req.body,
                 selectedClass.name,
                 instructor.name,
-                selectedClass.price
+                selectedClass.price,
+                booking.startDate,
+                booking.endDate
             );
         }
         res.send(result);

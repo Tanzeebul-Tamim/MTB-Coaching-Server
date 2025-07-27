@@ -29,48 +29,56 @@ const sendPaymentConfirmationEmail = (
     payment,
     className,
     instructorName,
-    price
+    price,
+    start,
+    end
 ) => {
-    const startDate = moment().add(7, "days");
-    const endDate = moment(startDate).add(25, "days");
-    const durationInDays = endDate.diff(startDate, "days");
+    const startDate = moment(start);
+    const endDate = moment(end);
+    const paymentDate = moment(payment?.date);
+    const duration = endDate.diff(startDate, "days");
+    const format = "Do MMMM, YYYY";
 
     const replacements = {
-        currentDate: moment(new Date()).format("Do MMMM, YYYY"),
+        currentDate: moment(new Date()).format(format),
         studentName: payment.studentName,
         className,
         instructorName,
-        startDate: startDate.format("Do MMMM, YYYY"),
-        endDate: endDate.format("Do MMMM, YYYY"),
-        durationInDays,
+        startDate: startDate.format(format),
+        endDate: endDate.format(format),
+        durationInDays: duration,
         transactionId: payment.transactionId || "-",
         price,
-        paymentDate: payment.date ? moment(payment.date).format("dddd, Do MMMM, YYYY, hh:mm a") : "-",
+        paymentDate: payment.date
+            ? paymentDate.format(`dddd, ${format}, hh:mm a`)
+            : "-",
         studentEmail: payment.studentEmail,
     };
 
     const htmlToSend = template(replacements);
     const textToSend = `
-Hi ${payment.studentName},
+    Hi ${payment.studentName},
 
-Thank you for enrolling in "${className}" by ${instructorName}.
+    Thank you for enrolling in "${className}" by ${instructorName}.
 
-Your course will start on ${startDate.format(
+    Your course will start on ${startDate.format(
         "Do MMMM, YYYY"
     )} and will end on ${endDate.format(
         "Do MMMM, YYYY"
-    )}, lasting ${durationInDays} days.
+    )}, lasting ${duration} days.
 
-Payment Details:
-- Transaction ID: ${payment.transactionId}
-- Amount Paid: $${price}
-- Payment Date: ${moment(payment.date).format("dddd, Do MMMM, YYYY, hh:mm a")}
+    Payment Details:
+    - Transaction ID: ${payment.transactionId}
+    - Amount Paid: $${price}
+    - Payment Date: ${moment(payment.date).format(
+        "dddd, Do MMMM, YYYY, hh:mm a"
+    )}
 
-We hope you enjoy your learning journey!
+    We hope you enjoy your learning journey!
 
-Warm regards,
-MTB Club Team
-`;
+    Warm regards,
+    MTB Club Team
+    `;
 
     transporter.sendMail(
         {
