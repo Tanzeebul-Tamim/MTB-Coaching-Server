@@ -18,6 +18,8 @@ module.exports = (
             classIndex,
             paymentStatus,
             transactionId,
+            startDate,
+            endDate,
             date,
         } = req.body;
         const query = {
@@ -39,8 +41,11 @@ module.exports = (
             paymentStatus,
             classIndex,
             transactionId,
+            startDate: new Date(startDate),
+            endDate: new Date(endDate),
             date,
         };
+        
         const updateDoc = { $set: booking };
         const result = await bookingsCollection.updateOne(
             {
@@ -83,7 +88,7 @@ module.exports = (
             const booking = await bookingsCollection.findOne(query);
             res.send(booking);
         } else {
-             res.send(booking);
+            res.send(booking);
         }
     });
 

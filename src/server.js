@@ -17,15 +17,32 @@ const client = new MongoClient(uri, {
 
 async function run() {
     try {
-        // await client.connect();
-        const userCollection = client.db("PMBIA").collection("users");
-        const bookingsCollection = client.db("PMBIA").collection("bookings");
+        await client.connect();
+        const db = client.db("PMBIA");
+        const userCollection = db.collection("users");
+        const bookingsCollection = db.collection("bookings");
+
+        const test = await userCollection.findOne({});
+        if (!test)
+            console.warn(
+                "⚠️ DB might be connected but user collection is empty or inaccessible."
+            );
 
         // Register routes
         require("./routes/users")(app, userCollection);
-        require("./routes/instructors")(app, userCollection, bookingsCollection);
+        require("./routes/instructors")(
+            app,
+            userCollection,
+            bookingsCollection
+        );
         require("./routes/classes")(app, userCollection);
-        require("./routes/bookings")(app, userCollection, bookingsCollection, stripe, sendPaymentConfirmationEmail);
+        require("./routes/bookings")(
+            app,
+            userCollection,
+            bookingsCollection,
+            stripe,
+            sendPaymentConfirmationEmail
+        );
 
         // Health check
         app.get("/", (_req, res) => {
@@ -36,7 +53,9 @@ async function run() {
             console.log(`MTB-Coaching-Server is running on port: ${port}`);
         });
 
-        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+        console.log(
+            "Pinged your deployment. You successfully connected to MongoDB!"
+        );
     } finally {
         // await client.close();
     }

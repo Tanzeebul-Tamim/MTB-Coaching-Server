@@ -17,7 +17,7 @@ module.exports = (app, userCollection) => {
             ];
             const email = req.params.email;
             const user = req.body;
-            const query = { email: email };
+            const query = { email };
             const options = { upsert: true };
             let updateDoc = {};
 
@@ -28,6 +28,14 @@ module.exports = (app, userCollection) => {
                 } else if (user[field] !== undefined) {
                     updateDoc[field] = user[field];
                 }
+            });
+
+            updateDoc.classes = updateDoc.classes.map((classItem) => {
+                return {
+                    ...classItem,
+                    startDate: new Date(classItem.startDate),
+                    endDate: new Date(classItem.endDate),
+                };
             });
 
             const result = await userCollection.updateOne(
@@ -47,6 +55,6 @@ module.exports = (app, userCollection) => {
         const email = req.params.email;
         const query = { email: email };
         const result = await userCollection.findOne(query);
-        res.send(result);
+        res.json(result);
     });
 };
