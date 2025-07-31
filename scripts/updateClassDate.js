@@ -29,23 +29,56 @@ async function updateClassDate() {
     await client.connect();
     const db = client.db("PMBIA");
     const users = db.collection("users");
+    const bookings = db.collection("bookings");
 
-    const instructors = await users.find({ role: "Instructor" }).toArray();
+    const instructors = await users
+        .find({ role: "Instructor" }, { projection: { classes: 1, name: 1 } })
+        .toArray();
+
+    if (!instructors.length) {
+        console.log("No instructors found.");
+        return;
+    }
 
     for (const instructor of instructors) {
-        const updatedClasses = (instructor?.classes || []).map((cls) => {
+        const originalClasses = instructor?.classes || [];
+        const updatedClasses = [];
+
+        for (let i = 0; i < originalClasses.length; i++) {
+            const cls = originalClasses[i];
             const startDate = randomStartDate();
             const endDate = randomEndDate(startDate);
-            return { ...cls, startDate, endDate };
-        });
+
+            updatedClasses.push({ ...cls, startDate, endDate });
+
+            await bookings.updateMany(
+                {
+                    instructorId: instructor._id,
+                    classIndex: i,
+                },
+                {
+                    $set: {
+                        startDate,
+                        endDate,
+                    },
+                }
+            );
+        }
 
         await users.updateOne(
             { _id: instructor._id },
-            { $set: { classes: updatedClasses } }
+            {
+                $set: {
+                    classes: updatedClasses,
+                    "meta.lastUpdated": new Date(),
+                },
+            }
         );
+
+        console.log(`✅ Updated classes for instructor: ${instructor.name}`);
     }
 
-    console.log("Instructor classes updated!");
+    console.log("🎉 All instructor classes updated!");
     await client.close();
 }
 
