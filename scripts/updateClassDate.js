@@ -4,7 +4,7 @@ require("dotenv").config();
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.y70m6ei.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
 
-//! Run 'npm status' to execute this script and update the class dates
+//! Run 'npm run refresh' to execute this script and update the class dates
 
 function randomStartDate() {
     // Range: 40 days in the past to 30 days in the future
