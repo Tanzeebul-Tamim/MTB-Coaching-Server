@@ -1,0 +1,328 @@
+<div style="display: flex; justify-content: center; width: 100%">
+    <div
+        style="
+            width: 85%;
+            background-color: #0e0d0d;
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+        "
+    >
+        <div
+            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            "
+        >
+            <div>
+                <a href="https://mtbcoachingclient.vercel.app/">
+                    <img
+                        style="width: 45%; margin-bottom: 20px"
+                        src="https://i.ibb.co/CstFjmPQ/MTB-Coaching.png"
+                    />
+                </a>
+            </div>
+            <div>
+                <div
+                    style="
+                        display: flex;
+                        justify-content: end;
+                        align-items: center;
+                    "
+                >
+                    <img
+                        style="width: 40%"
+                        src="https://i.ibb.co/B51wF1JW/logo.png"
+                    />
+                </div>
+                <p style="text-align: end">
+                    Delivering exceptional services since 2006.
+                </p>
+            </div>
+        </div>
+        <br />
+        <hr />
+        <br />
+        <p>{{currentDate}}</p>
+        <p>Dear {{studentName}},</p>
+        <br />
+        <p>
+            Thank you for choosing
+            <strong>Professional Mountain Biking Coaching Network</strong>
+            for your mountain biking journey. We're excited to welcome you to
+            our vibrant community of riders and coaches who share a passion for
+            adventure, skill development, and the great outdoors.
+        </p>
+        <p>
+            You have successfully enrolled in the following course, and we are
+            confident it will be a rewarding and memorable experience:
+        </p>
+        <br />
+        <table
+            style="
+                width: 100%;
+                border-collapse: collapse;
+                background: #181818;
+                color: #fff;
+                border-radius: 8px;
+                overflow: hidden;
+            "
+        >
+            <thead>
+                <tr style="background: #232323">
+                    <th
+                        style="
+                            padding: 10px;
+                            text-align: center;
+                            font-size: 1.3em;
+                            border-right: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        Course Details
+                    </th>
+                    <th
+                        style="
+                            padding: 10px;
+                            text-align: center;
+                            font-size: 1.3em;
+                            border-left: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        Payment Confirmation
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-right: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Course Name:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >{{className}}</span
+                        >
+                    </td>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-left: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Status:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >Paid</span
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-right: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Instructor:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >{{instructorName}}</span
+                        >
+                    </td>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-left: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Transaction ID:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >{{transactionId}}</span
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-right: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Start Date:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >{{startDate}}</span
+                        >
+                    </td>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-left: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Amount Paid:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >$ {{price}}</span
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-right: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >End Date:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >{{endDate}}</span
+                        >
+                    </td>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-left: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Payment Method:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >Credit Card</span
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-right: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Duration:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >{{durationInDays}} days</span
+                        >
+                    </td>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-bottom: 1px solid #333;
+                            border-left: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Date of Payment:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >{{paymentDate}}</span
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-right: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Location:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >Autoweg, 3911 TL Rhenen, Netherlands</span
+                        >
+                    </td>
+                    <td
+                        style="
+                            padding: 8px;
+                            border-left: 1px solid #333;
+                            width: 50%;
+                        "
+                    >
+                        <span style="font-weight: bold; font-size: 1.1em"
+                            >Receipt Sent To:</span
+                        >
+                        <span style="font-size: 0.95em; margin-left: 6px"
+                            >{{studentEmail}}</span
+                        >
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <p>
+            If you have any questions regarding the course, feel free to reach
+            out to us.
+        </p>
+        <br />
+        <p>Warm regards,</p>
+        <br />
+        <p>Tanzeebul Tamim</p>
+        <p>Chief Executive Officer</p>
+        <p>MTB Coaching Network Ltd</p>
+        <br />
+        <div style="text-align: center">
+            <h3>Team MTB Club</h3>
+            <p>
+                <strong>Our Website : </strong>
+                <a href="https://mtbcoachingnetwork.vercel.app/">
+                    <span
+                        style="text-decoration-line: underline; color: #4285f4"
+                    >
+                        https://mtbcoachingnetwork.vercel.app
+                    </span>
+                </a>
+            </p>
+            <p>
+                <strong>Address : </strong>Autoweg, 3911 TL Rhenen, Netherlands
+            </p>
+            <p>
+                <strong>Phone : </strong>+31644460635 | <strong>Email : </strong
+                ><a
+                    style="text-decoration-line: underline; color: #4285f4"
+                    href="mailto:tanzeebul.tamim2003@gmail.com"
+                    >info@mtb-club.com</a
+                >
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,231 @@
+<div style="display: flex; justify-content: center; width: 100%">
+    <div
+        style="
+            width: 85%;
+            background-color: #0e0d0d;
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+        "
+    >
+        <!-- Header -->
+        <div
+            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            "
+        >
+            <div>
+                <a href="https://mtbcoachingclient.vercel.app/">
+                    <img
+                        style="width: 45%; margin-bottom: 20px"
+                        src="https://i.ibb.co/CstFjmPQ/MTB-Coaching.png"
+                    />
+                </a>
+            </div>
+            <div>
+                <div
+                    style="
+                        display: flex;
+                        justify-content: end;
+                        align-items: center;
+                    "
+                >
+                    <img
+                        style="width: 40%"
+                        src="https://i.ibb.co/B51wF1JW/logo.png"
+                    />
+                </div>
+                <p style="text-align: end">
+                    Delivering exceptional services since 2006.
+                </p>
+            </div>
+        </div>
+
+        <br />
+        <hr />
+        <br />
+
+        <!-- Greeting and Intro -->
+        <p>{{currentDate}}</p>
+        <p>Hello Admin,</p>
+        <br />
+        <p>
+            You have received a new message from a member of the
+            <strong>MTB Coaching Network</strong>. Their contact details are
+            included below:
+        </p>
+        <br />
+
+        <!-- Contact Info Table -->
+        <table
+            style="
+                width: 100%;
+                border-collapse: collapse;
+                background: #181818;
+                color: #fff;
+                border-radius: 8px;
+                overflow: hidden;
+            "
+        >
+            <thead>
+                <tr style="background: #232323">
+                    <th
+                        colspan="2"
+                        style="
+                            padding: 12px;
+                            font-size: 1.3em;
+                            text-align: center;
+                        "
+                    >
+                        Message and Member Details
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px;
+                            border-bottom: 1px solid #333;
+                            font-weight: bold;
+                        "
+                    >
+                        User Image:
+                    </td>
+                    <td style="padding: 10px; border-bottom: 1px solid #333">
+                        <img
+                            src="{{image}}"
+                            alt="User Image"
+                            style="
+                                max-width: 70px;
+                                border-radius: 12px;
+                                border: 1px solid #333;
+                            "
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px;
+                            border-bottom: 1px solid #333;
+                            font-weight: bold;
+                        "
+                    >
+                        Name:
+                    </td>
+                    <td style="padding: 10px; border-bottom: 1px solid #333">
+                        {{name}}
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px;
+                            border-bottom: 1px solid #333;
+                            font-weight: bold;
+                        "
+                    >
+                        Role:
+                    </td>
+                    <td style="padding: 10px; border-bottom: 1px solid #333">
+                        {{role}}
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px;
+                            border-bottom: 1px solid #333;
+                            font-weight: bold;
+                        "
+                    >
+                        Email:
+                    </td>
+                    <td style="padding: 10px; border-bottom: 1px solid #333">
+                        {{email}}
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px;
+                            border-bottom: 1px solid #333;
+                            font-weight: bold;
+                        "
+                    >
+                        Phone:
+                    </td>
+                    <td style="padding: 10px; border-bottom: 1px solid #333">
+                        {{contactNo}}
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px;
+                            border-bottom: 1px solid #333;
+                            font-weight: bold;
+                        "
+                    >
+                        Address:
+                    </td>
+                    <td style="padding: 10px; border-bottom: 1px solid #333">
+                        {{address}}
+                    </td>
+                </tr>
+                <tr>
+                    <td
+                        style="
+                            padding: 10px;
+                            border-bottom: 1px solid #333;
+                            font-weight: bold;
+                        "
+                    >
+                        Subject:
+                    </td>
+                    <td style="padding: 10px; border-bottom: 1px solid #333">
+                        {{subject}}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; font-weight: bold">Message:</td>
+                    <td style="padding: 10px">{{message}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br />
+        <p>Please follow up with the user at your earliest convenience.</p>
+        <br />
+
+        <!-- Closing -->
+        <p>Best regards,</p>
+        <p>MTB Coaching Contact System</p>
+
+        <br />
+        <!-- Footer -->
+        <div style="text-align: center">
+            <h3>Team MTB Club</h3>
+            <p>
+                <strong>Our Website: </strong>
+                <a href="https://mtbcoachingclient.vercel.app/">
+                    <span
+                        style="text-decoration-line: underline; color: #4285f4"
+                    >
+                        https://mtbcoachingclient.vercel.app/
+                    </span>
+                </a>
+            </p>
+            <p>
+                <strong>Address:</strong> Autoweg, 3911 TL Rhenen, Netherlands
+            </p>
+            <p>
+                <strong>Phone:</strong> +31644460635 |
+                <strong>Email:</strong> info@mtb-club.com
+            </p>
+        </div>
+    </div>
+</div>

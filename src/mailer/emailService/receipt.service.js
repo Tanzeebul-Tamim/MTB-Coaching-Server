@@ -17,8 +17,8 @@ const transporter = nodemailer.createTransport(mg(auth));
 
 // Load the HTML template once
 const templatePath = path.join(
-    process.cwd(),
-    "templates/paymentConfirmation.html"
+    __dirname,
+    "../templates/paymentConfirmation.html"
 );
 
 const source = fs.readFileSync(templatePath, "utf8");
