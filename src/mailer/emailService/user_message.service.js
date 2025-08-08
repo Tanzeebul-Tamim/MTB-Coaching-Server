@@ -33,6 +33,7 @@ const sendUserMessageEmail = (message) => {
         contactNo,
         address,
         role,
+        ticketId,
     } = message;
     const format = "Do MMMM, YYYY";
 
@@ -46,6 +47,7 @@ const sendUserMessageEmail = (message) => {
         address,
         message: text,
         role,
+        ticketId,
     };
 
     const htmlToSend = template(replacements);
@@ -55,6 +57,7 @@ const sendUserMessageEmail = (message) => {
     You have received a new message from a registered member of the MTB Coaching Network.
 
     Details:
+    - Ticket No: ${ticketId}
     - Name: ${name}
     - Email: ${email}
     - Subject: ${subject}
@@ -75,7 +78,7 @@ const sendUserMessageEmail = (message) => {
         {
             from: process.env.MAIL_SENDER,
             to: process.env.MAIL_SENDER, // Send to admin
-            subject: `New Contact Message from ${name} (${email})`,
+            subject: `Support Request #${ticketId} from ${name} (${email})`,
             html: htmlToSend,
             text: textToSend,
         },
@@ -86,7 +89,7 @@ const sendUserMessageEmail = (message) => {
                     error
                 );
             } else {
-                console.log("Email sent: " + info.response);
+                console.log("Email sent: " + process.env.MAIL_SENDER);
             }
         }
     );
