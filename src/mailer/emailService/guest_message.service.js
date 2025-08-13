@@ -59,7 +59,7 @@ const sendGuestMessageEmail = (message) => {
         {
             from: process.env.MAIL_SENDER,
             to: process.env.MAIL_SENDER, // Send to admin
-            subject: `New Contact Message from ${name} (${email})`,
+            subject: `Support Request from ${name} (${email})`,
             html: htmlToSend,
             text: textToSend,
         },
@@ -70,7 +70,7 @@ const sendGuestMessageEmail = (message) => {
                     error
                 );
             } else {
-                console.log("Email sent: " + info.response);
+                console.log("Email sent: " + process.env.MAIL_SENDER);
             }
         }
     );
