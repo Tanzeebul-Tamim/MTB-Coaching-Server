@@ -29,4 +29,12 @@ module.exports = (
             res.status(500).send("Error posting message.");
         }
     });
+
+    // get user messages
+    app.get("/messages/:userId", async (req, res) => {
+        const { userId } = req.params;
+        const query = { userId: new ObjectId(userId) };
+        const messages = await messagesCollection.find(query).toArray();
+        res.send(messages);
+    });
 };
