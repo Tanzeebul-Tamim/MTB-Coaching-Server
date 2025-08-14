@@ -33,6 +33,12 @@ const sendPaymentConfirmationEmail = (
     start,
     end
 ) => {
+    function calculateTotalWithTax() {
+        const taxAmount = price * 0.1;
+        const total = price + taxAmount;
+        return total.toFixed(2);
+    }
+
     const startDate = moment(start);
     const endDate = moment(end);
     const paymentDate = moment(payment?.date);
@@ -48,7 +54,7 @@ const sendPaymentConfirmationEmail = (
         endDate: endDate.format(format),
         durationInDays: duration,
         transactionId: payment.transactionId || "-",
-        price,
+        price: calculateTotalWithTax(),
         paymentDate: payment.date
             ? paymentDate.format(`dddd, ${format}, hh:mm a`)
             : "-",
@@ -69,7 +75,7 @@ const sendPaymentConfirmationEmail = (
 
     Payment Details:
     - Transaction ID: ${payment.transactionId}
-    - Amount Paid: $${price}
+    - Amount Paid: $${calculateTotalWithTax()}
     - Payment Date: ${moment(payment.date).format(
         "dddd, Do MMMM, YYYY, hh:mm a"
     )}
