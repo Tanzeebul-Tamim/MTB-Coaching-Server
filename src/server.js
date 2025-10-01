@@ -44,6 +44,40 @@ async function run() {
                 "⚠️ DB might be connected but user collection is empty or inaccessible."
             );
 
+        //! --- START: Monthly Refresh Setup ---
+        const { refreshCourses } = require("../scripts/updateClassDate");
+
+        let hasRunThisMonth = false;
+
+        function checkMonthlyRefresh() {
+            const now = new Date();
+
+            // Run only on the 1st day of the month at 2 AM
+            if (
+                now.getDate() === 1 &&
+                now.getHours() === 2 &&
+                !hasRunThisMonth
+            ) {
+                refreshCourses().catch((err) => {
+                    console.error("Error updating instructor classes:", err);
+                }); // this will update the DB
+                hasRunThisMonth = true;
+                console.log(
+                    "Monthly refresh executed at",
+                    now.toLocaleString()
+                );
+            }
+
+            // Reset for next month on 2nd day
+            if (now.getDate() === 2) {
+                hasRunThisMonth = false;
+            }
+        }
+
+        // check every 15 mins (Uptime Robot ping)
+        setInterval(checkMonthlyRefresh, 15 * 60 * 1000);
+        //! --- END: Monthly Refresh Setup ---
+
         // Register routes
         require("./routes/users")(app, userCollection);
         require("./routes/instructors")(
@@ -56,7 +90,7 @@ async function run() {
             app,
             messagesCollection,
             sendUserMessageEmail,
-            sendGuestMessageEmail,
+            sendGuestMessageEmail
         );
         require("./routes/bookings")(
             app,

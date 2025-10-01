@@ -1,10 +1,10 @@
+//! Run 'npm run refresh' to execute this script and refresh the class dates
 // Script to randomize instructor class dates for demo purposes
-const { MongoClient, ObjectId } = require("mongodb");
+
+const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.y70m6ei.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri);
-
-//! Run 'npm run refresh' to execute this script and update the class dates
 
 function randomStartDate() {
     // Range: 40 days in the past to 30 days in the future
@@ -25,7 +25,7 @@ function randomEndDate(startDate) {
     return result;
 }
 
-async function updateClassDate() {
+async function refreshCourses() {
     await client.connect();
     const db = client.db("PMBIA");
     const users = db.collection("users");
@@ -37,6 +37,7 @@ async function updateClassDate() {
 
     if (!instructors.length) {
         console.log("No instructors found.");
+        await client.close();
         return;
     }
 
@@ -82,7 +83,12 @@ async function updateClassDate() {
     await client.close();
 }
 
-updateClassDate().catch((err) => {
-    console.error("Error updating instructor classes:", err);
-    client.close();
-});
+module.exports = { refreshCourses };
+
+// If run directly, execute refreshCourses
+if (require.main === module) {
+    refreshCourses().catch((err) => {
+        console.error("Error updating instructor classes:", err);
+        client.close();
+    });
+}
