@@ -40,7 +40,7 @@ module.exports = (app, userCollection) => {
         res.send({ totalClasses });
     });
 
-    // get top 6 classes
+    // get top 10 classes
     app.get("/classes/top", async (req, res) => {
         const query = { role: "Instructor" };
         const instructors = await userCollection.find(query).toArray();
@@ -58,7 +58,7 @@ module.exports = (app, userCollection) => {
         const sortedClasses = allClasses.sort(
             (a, b) => b.totalStudent - a.totalStudent
         );
-        const topClasses = sortedClasses.slice(0, 6);
+        const topClasses = sortedClasses.slice(0, 10);
         res.send(topClasses);
     });
 };
