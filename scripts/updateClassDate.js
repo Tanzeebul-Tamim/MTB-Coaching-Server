@@ -36,7 +36,7 @@ async function refreshCourses() {
         .toArray();
 
     if (!instructors.length) {
-        console.log("No instructors found.");
+        console.error("No instructors found.");
         await client.close();
         return;
     }
